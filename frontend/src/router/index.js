@@ -26,12 +26,18 @@ const routes = [
         component: () => import("../views/side/Class.vue")
       },
       {
+        path: "/classinfo",
+        name: "ClassInfo",
+        component: () => import("../views/side/ClassInfo.vue")
+      },
+      {
         path: '/about',
         name: 'About',
         component: () => import('../views/side/About.vue')
       },
     ]
   },
+  
 ]
 
 const router = createRouter({

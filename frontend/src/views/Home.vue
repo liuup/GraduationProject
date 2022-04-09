@@ -21,7 +21,7 @@
                 <el-menu-item index="2" @click="Class()">
                   <div class="menu-item">
                     <el-icon><DataAnalysis /></el-icon>
-                    <span>课堂分析</span>
+                    <span>课程分析</span>
                   </div>
                 </el-menu-item>
 
