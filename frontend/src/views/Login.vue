@@ -8,7 +8,7 @@
                     <p>账号</p>
                     <el-input
                         class="inputflex"
-                        v-model="login_form.num"
+                        v-model="user_form.num"
                         placeholder="测试账号123456"
                         clearable
                     ></el-input>
@@ -18,14 +18,14 @@
                     <p>密码</p>
                     <el-input
                         class="inputflex"
-                        v-model="login_form.pwd"
+                        v-model="user_form.pwd"
                         placeholder="测试密码654321"
                         type="password"
                         clearable
                     ></el-input>
                 </div>
 
-                <el-button class="btn" @click="login()" type="primary" :loading="isloading">登录</el-button>
+                <el-button class="btn" @click="login()" type="primary">登录</el-button>
                 <el-button class="btn" @click="cancel()">清除</el-button>
             </div>
         </div>
@@ -36,12 +36,14 @@
 
 <script>
 import { ElNotification } from 'element-plus'
+import axios from "axios"
+
 
 export default {
     data() {
         return {
-            isloading: false,   // 登录按键是否正在加载，true为加载，false为不在加载
-            login_form: {
+            // isloading: false,   // 登录按键是否正在加载，true为加载，false为不在加载
+            user_form: {
                 num: "",	// 用户账号
                 pwd: ""	// 用户密码
             },
@@ -49,41 +51,53 @@ export default {
     },
     methods: {
         login() {
-            console.log("login");
-            this.isloading = true;
-            // 异步延时
-            setTimeout(() => {
-                this.isloading = false;
+            // 错误处理
+            if(this.user_form.num == "" || this.user_form.pwd == "") {
                 ElNotification({
-                // title: 'Info',
-                message: '登录成功',
-                type: 'success',
+                message: '输入框禁止为空',
+                type: 'warning',
                 })
-                // 设置本地存储
-                localStorage.setItem("menuid", JSON.stringify("1"));
-                // 跳转路由
-                this.$router.push({path: "/home"});
-            }, 1000);
-            
-            
-            // this.isloading = false;
-            // ElNotification({
-            //     // title: 'Info',
-            //     message: '登录成功',
-            //     type: 'success',
-            // })
-            // TODO: 登录失败弹框
+
+                this.cancel();
+
+                return;
+            }
+
+            axios
+                .post("http://127.0.0.1:8000/login", this.user_form)
+                .then(res => {
+                    let data = JSON.parse(res.data);
+                    // console.log(data.status);
+
+                    if(data.status == "failure") {
+                        ElNotification({
+                        message: '账号或密码错误',
+                        type: 'error',
+                        });
+                        
+                        this.cancel();
+                    } else if(data.status == "success") {
+                        ElNotification({
+                        message: '登录成功',
+                        type: 'success',
+                        });
+
+                         // 设置本地存储
+                        localStorage.setItem("menuid", JSON.stringify("1"));
+                        // 跳转路由
+                        this.$router.push({path: "/home"});
+                    }
+                })
+                .catch(err => {
+
+                    console.log(err);
+                })
         },
+
         // 清除登录表单
         cancel() {
-            // console.log("cancel");
-            this.login_form.num = "";
-            this.login_form.pwd = ""
-            ElNotification({
-                // title: 'Info',
-                message: '清除成功',
-                type: 'info',
-            })
+            this.user_form.num = "";
+            this.user_form.pwd = "";
         }
     }
 }

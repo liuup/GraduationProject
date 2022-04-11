@@ -8,7 +8,7 @@
       <el-table-column prop="count" label="学生人数" width="180" />
       <el-table-column prop="platform" label="学习平台" width="180" />
       
-      <el-table-column label="Operations">
+      <el-table-column label="操作">
         <template #default="scope">
           <el-button type="primary" @click="handleShowClass(scope.$index)">查看</el-button>
         </template>
@@ -25,23 +25,30 @@ export default {
         {
           date: "2018-05-03",
           name: "软件工程基础",
-          class: "计科1801 计科1802 计科1803",
-          count: "72",
+          class: "计科1801 计科1802",
+          count: "57",
           platform: "雨课堂"
         },
         {
-          date: "1918-05-03",
-          name: "测试",
-          class: "Test",
-          count: "0",
+          date: "2021-04-27",
+          name: "软件工程基础",
+          class: "软件1901 软件1902",
+          count: "72",
           platform: "超星"
         },
         {
-          date: "1918-05-03",
-          name: "测试",
-          class: "Test",
-          count: "0",
-          platform: "超星"
+          date: "2020-05-03",
+          name: "数据结构与算法",
+          class: "计科1801 计科1802",
+          count: "76",
+          platform: "CG"
+        },
+        {
+          date: "2021-05-03",
+          name: "数据结构与算法",
+          class: "计科2001 计科2002",
+          count: "64",
+          platform: "CG"
         },
       ],
     };
