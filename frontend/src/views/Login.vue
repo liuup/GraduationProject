@@ -56,6 +56,8 @@ export default {
                 ElNotification({
                 message: '输入框禁止为空',
                 type: 'warning',
+                showClose: false,
+                duration: 2000
                 })
 
                 this.cancel();
@@ -73,19 +75,23 @@ export default {
                         ElNotification({
                         message: '账号或密码错误',
                         type: 'error',
+                        showClose: false,
+                        duration: 2000
                         });
-                        
+
                         this.cancel();
                     } else if(data.status == "success") {
                         ElNotification({
                         message: '登录成功',
                         type: 'success',
+                        showClose: false,
+                        duration: 2000
                         });
 
                          // 设置本地存储
                         localStorage.setItem("menuid", JSON.stringify("1"));
                         // 跳转路由
-                        this.$router.push({path: "/home"});
+                        this.$router.replace({path: "/home"});
                     }
                 })
                 .catch(err => {
