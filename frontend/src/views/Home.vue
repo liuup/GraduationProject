@@ -4,6 +4,7 @@
       <el-header class="header">
         <img src="../assets/saulogo_blue_800x800.png" style="width:20px;">
         <span> 高校学情分析可视化平台</span>
+        <el-button type="danger" class="exit-button" @click="Exit()">退出</el-button>
       </el-header>
 
       <el-container>
@@ -57,10 +58,6 @@ export default {
   name: "Home",
 
   components: {
-    // Echarts组件
-    // Bar,
-    // Round,
-
     // element-plus icons 组件
     DataAnalysis,
     User,
@@ -90,16 +87,20 @@ export default {
     },
 
     Student() {
-      this.$router.push({ path: "/student" });
+      this.$router.replace({ path: "/student" });
     },
 
     Class() {
-      this.$router.push({ path: "/class" });
+      this.$router.replace({ path: "/class" });
     },
 
     About() {
-      this.$router.push({ path: "/about" });
+      this.$router.replace({ path: "/about" });
     },
+
+    Exit() {
+      this.$router.replace({ path: "/" });
+    }
   },
 
   mounted() {
@@ -110,14 +111,20 @@ export default {
 
 
 <style scoped>
+.header {
+  height: 46px;
+  font-size: 30px;
+}
+
+.exit-button {
+  margin-top: 7px;
+  margin-right: 1px;
+  float: right;
+}
+
 .common-layout {
   background-size: cover;
   min-height: 100vh;
-}
-
-.header {
-  /* background-color: bisque; */
-  font-size: 30px;
 }
 
 .aside {
