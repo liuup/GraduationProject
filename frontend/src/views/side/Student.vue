@@ -4,10 +4,19 @@
 
     <el-row>
       <el-col :span="12">
-        <Bar :bar_data="bar_data_1"></Bar>
+        <Bar :option="bar_data"></Bar>
       </el-col>
       <el-col :span="12">
-        <Bar :bar_data="bar_data_1"></Bar>
+        <Bar :option="bar_data"></Bar>
+      </el-col>
+    </el-row>
+
+    <el-row>
+      <el-col :span="12">
+        <Round :option="round_data"></Round>
+      </el-col>
+      <el-col :span="12">
+        <Round :option="round_data"></Round>
       </el-col>
     </el-row>
   </div>
@@ -15,6 +24,7 @@
 
 <script>
 import Bar from "../../components/Bar.vue";
+import Round from "../../components/Round.vue";
 
 export default {
   name: "Studenet",
@@ -22,12 +32,72 @@ export default {
   components: {
     // Echarts组件
     Bar,
-    // Round,
+    Round,
   },
 
   data() {
     return {
-      bar_data_1: [5, 20, 36, 10, 10, 20],
+      bar_data: {
+        title: {
+          text: "ECharts示例",
+        },
+        tooltip: {},
+        legend: {
+          data: ["销量"],
+        },
+        xAxis: {
+          data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "销量",
+            type: "bar",
+            data: [5, 20, 36, 10, 10, 20],
+            // data: this.bar_data,
+            showBackground: true,
+            backgroundStyle: {
+              color: "rgba(180, 180, 180, 0.2)",
+            },
+          },
+        ],
+      },
+
+      round_data: {
+        title: {
+          text: "Referer of a Website",
+          subtext: "Fake Data",
+          left: "center",
+        },
+        tooltip: {
+          trigger: "item",
+        },
+        legend: {
+          orient: "vertical",
+          left: "left",
+        },
+        series: [
+          {
+            name: "Access From",
+            type: "pie",
+            radius: "50%",
+            data: [
+              { value: 1048, name: "Search Engine" },
+              { value: 735, name: "Direct" },
+              { value: 580, name: "Email" },
+              { value: 484, name: "Union Ads" },
+              { value: 300, name: "Video Ads" },
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)",
+              },
+            },
+          },
+        ],
+      },
     };
   },
 };
@@ -46,21 +116,21 @@ export default {
 .el-col {
   border-radius: 4px;
 }
-.bg-purple-dark {
-  background: #99a9bf;
+/* .bg-purple-dark {
+	background: #99a9bf;
 }
 .bg-purple {
-  background: #d3dce6;
+	background: #d3dce6;
 }
 .bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
+	background: #e5e9f2;
+} */
+/* .grid-content {
+	border-radius: 4px;
+	min-height: 36px;
 }
 .row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-}
+	padding: 10px 0;
+	background-color: #f9fafc;
+} */
 </style>

@@ -1,61 +1,32 @@
 <template>
-    <div id="test"></div>
+    <div :id="elid" class="round_container"></div>
 </template>
 
 <script>
 import * as echarts from "echarts"
+import {v4 as uuidv4} from "uuid";
 
 export default {
-    props: ["round_data"],
+    props: ["option"],
 
     data() {
         return {
-            option: {
-                tooltip: {
-                    trigger: 'item'
-                },
-                legend: {
-                    top: '5%',
-                    left: 'center'
-                },
-                series: [
-                    {
-                        name: 'Access From',
-                        type: 'pie',
-                        radius: ['40%', '70%'],
-                        avoidLabelOverlap: false,
-                        itemStyle: {
-                            borderRadius: 10,
-                            borderColor: '#fff',
-                            borderWidth: 2
-                        },
-                        label: {
-                            show: false,
-                            position: 'center'
-                        },
-                        emphasis: {
-                            label: {
-                                show: true,
-                                fontSize: '40',
-                                fontWeight: 'bold'
-                            }
-                        },
-                        labelLine: {
-                            show: false
-                        },
-                        data: this.round_data
-                    }
-                ]
-            }
+            elid: "",
         }
     },
+
+    created() {
+        this.elid = uuidv4();
+    },
+
     methods: {
         initChart() {
-            let chart = echarts.init(document.getElementById("test"));
+            let chart = echarts.init(document.getElementById(this.elid));
 
             chart.setOption(this.option);
         }
     },
+
     mounted() {
         this.initChart();
     },
@@ -65,10 +36,10 @@ export default {
 </script>
 
 <style scoped>
-#test {
+.round_container {
     /* background-color: aqua; */
-    border: 1px solid blue;
-    width: 300px;
-    height: 300px;
+    /* border: 1px solid blue; */
+    width: 500px;
+    height: 500px;
 }
 </style>
