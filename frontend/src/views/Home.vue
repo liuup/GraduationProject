@@ -12,21 +12,28 @@
           <el-row>
             <el-col>
               <el-menu :default-active="active_index" @select="SelectIndex">
-                <el-menu-item index="1" @click="Student()">
+                <el-menu-item index="1" @click="Overview()">
+                  <div class="menu-item">
+                    <el-icon><View /></el-icon>
+                    <span>学情总览</span>
+                  </div>
+                </el-menu-item>
+
+                <el-menu-item index="2" @click="Student()">
                   <div class="menu-item">
                     <el-icon><User /></el-icon>
                     <span>学生分析</span>
                   </div>
                 </el-menu-item>
 
-                <el-menu-item index="2" @click="Class()">
+                <el-menu-item index="3" @click="Class()">
                   <div class="menu-item">
                     <el-icon><DataAnalysis /></el-icon>
                     <span>课程分析</span>
                   </div>
                 </el-menu-item>
 
-                <el-menu-item index="3" @click="About()">
+                <el-menu-item index="4" @click="About()">
                   <div class="menu-item">
                     <el-icon><More /></el-icon>
                     <span>关于</span>
@@ -52,13 +59,14 @@
 
 
 <script>
-import { DataAnalysis, User, More } from "@element-plus/icons-vue";
-
+import { View, DataAnalysis, User, More } from "@element-plus/icons-vue";
+// <el-icon><view /></el-icon>
 export default {
   name: "Home",
 
   components: {
     // element-plus icons 组件
+    View,
     DataAnalysis,
     User,
     More,
@@ -66,24 +74,18 @@ export default {
 
   data() {
     return {
+      // 用户停留的页面，做缓存用
       active_index: "1",
-
-      bar_data_1: [5, 20, 36, 10, 10, 20],
-      bar_data_2: [10, 35, 10, 5, 40, 25],
-
-      round_data: [
-        { value: 1048, name: "Search Engine" },
-        { value: 735, name: "Direct" },
-        { value: 580, name: "Email" },
-        { value: 484, name: "Union Ads" },
-        { value: 300, name: "Video Ads" },
-      ],
     };
   },
 
   methods: {
     SelectIndex(index, path) {
       localStorage.setItem("menuid", JSON.stringify(index));
+    },
+
+    Overview() {
+      this.$router.replace({ path: "/overview" });
     },
 
     Student() {

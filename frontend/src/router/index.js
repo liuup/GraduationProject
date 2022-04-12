@@ -11,10 +11,15 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: () => import("../views/Home.vue"),
-    redirect: "/student",
+    redirect: "/overview",
 
     // 二级路由
     children: [
+      {
+        path: "/overview",
+        name: "Overview",
+        component: () => import("../views/side/Overview.vue")
+      },
       {
         path: "/student",
         name: "Student",
