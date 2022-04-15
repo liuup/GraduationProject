@@ -33,7 +33,14 @@
                   </div>
                 </el-menu-item>
 
-                <el-menu-item index="4" @click="About()">
+                <el-menu-item index="4" @click="Myself()">
+                  <div class="menu-item">
+                    <el-icon><DataAnalysis /></el-icon>
+                    <span>个人中心</span>
+                  </div>
+                </el-menu-item>
+
+                <el-menu-item index="5" @click="About()">
                   <div class="menu-item">
                     <el-icon><More /></el-icon>
                     <span>关于</span>
@@ -94,6 +101,10 @@ export default {
 
     Class() {
       this.$router.replace({ path: "/class" });
+    },
+
+    Myself() {
+      this.$router.replace({ path: "/myself" });
     },
 
     About() {

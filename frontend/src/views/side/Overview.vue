@@ -12,6 +12,14 @@
         <Round :option="round_data"></Round>
       </el-col>
     </el-row>
+	<el-row>
+      <el-col :span="12">
+        <Bar :option="bar_data"></Bar>
+      </el-col>
+      <el-col :span="12">
+        <Round :option="round_data"></Round>
+      </el-col>
+    </el-row>
   </div>
 </template>
 

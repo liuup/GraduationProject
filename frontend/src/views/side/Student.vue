@@ -2,7 +2,7 @@
   <div class="student-main">
     <h1>学生分析</h1>
 
-    <el-row>
+    <!-- <el-row>
       <el-col :span="12">
         <Bar :option="bar_data"></Bar>
       </el-col>
@@ -18,7 +18,18 @@
       <el-col :span="12">
         <Round :option="round_data"></Round>
       </el-col>
-    </el-row>
+    </el-row> -->
+    <el-table :data="students" style="width: 100%">
+      <el-table-column prop="name" label="姓名" width="120" />
+      <el-table-column prop="num" label="学号" />
+      <el-table-column prop="course" label="选课" />
+      <!-- <el-table-column prop="phone" label="手机号" /> -->
+      <el-table-column label="操作">
+        <template #default="scope">
+          <el-button type="primary" @click="handleShowClass(scope.$index)">查看</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -37,6 +48,40 @@ export default {
 
   data() {
     return {
+      students: [
+        {
+          name: "刘上",
+          num: "183424080320",
+          // class: "计科1803",
+          course: "软甲工程基础",
+        },
+        {
+          name: "徐东",
+          num: "153401010116",
+          // class: "计科1803",
+          course: "软甲工程基础",
+        },
+        {
+          name: "小明",
+          num: "193411010227",
+          // class: "计科1803",
+          course: "软甲工程基础",
+        },
+        {
+          name: "石大千",
+          num: "193401010233",
+          // class: "计科1803",
+          course: "软甲工程基础",
+        },
+        {
+          name: "刘上",
+          num: "183424080320",
+          // class: "计科1803",
+          course: "软甲工程基础",
+        },
+      ],
+
+
       bar_data: {
         title: {
           text: "ECharts示例",

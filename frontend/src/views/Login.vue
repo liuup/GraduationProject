@@ -26,9 +26,31 @@
                 </div>
 
                 <el-button class="btn" @click="login()" type="primary">登录</el-button>
-                <el-button class="btn" @click="cancel()">清除</el-button>
+                <el-button class="btn" @click="register()">注册</el-button>  
             </div>
         </div>
+
+        <el-drawer v-model="drawer" >
+            <el-form
+                label-position="top"
+                label-width="100px"
+                :model="reg_form"
+            >
+                <el-form-item label="姓名">
+                    <el-input v-model="reg_form.name" />
+                </el-form-item>
+                <el-form-item label="账号">
+                    <el-input v-model="reg_form.num" />
+                </el-form-item>
+                <el-form-item label="密码">
+                    <el-input v-model="reg_form.pwd" type="password" />
+                </el-form-item>
+                <el-form-item label="手机号">
+                    <el-input v-model="reg_form.phone" />
+                </el-form-item>
+            </el-form>
+            <el-button type="primary" @click="submit()">提交</el-button>
+        </el-drawer>
     </div>
 </template>
 
@@ -37,11 +59,21 @@
 <script>
 import { ElNotification } from 'element-plus'
 import axios from "axios"
-
+import md5 from "md5"
 
 export default {
     data() {
         return {
+            drawer: false,
+
+            reg_form: {
+                name: "",   // 姓名
+                num: "",    // 账号
+                pwd: "",    // 密码
+                phone: "",   // 手机号
+                date: "2022-04-15"  // 登录日期
+            },
+
             // isloading: false,   // 登录按键是否正在加载，true为加载，false为不在加载
             user_form: {
                 num: "",	// 用户账号
@@ -64,6 +96,8 @@ export default {
 
                 return;
             }
+
+            this.user_form.pwd = md5(this.user_form.pwd);
 
             axios
                 .post("http://127.0.0.1:8000/login", this.user_form)
@@ -90,6 +124,9 @@ export default {
 
                          // 设置本地存储
                         localStorage.setItem("menuid", JSON.stringify("1"));
+                        // TODO: 设置本地存储的用户名
+                        localStorage.setItem("usernum", JSON.stringify(this.user_form.num));
+
                         // 跳转路由
                         this.$router.replace({path: "/home"});
                     }
@@ -100,10 +137,54 @@ export default {
                 })
         },
 
+        register() {
+            this.drawer = true;
+        },
+
+        submit() {
+            this.reg_form.pwd = md5(this.reg_form.pwd);
+
+            axios
+                .post("http://127.0.0.1:8000/register", this.reg_form)
+                .then(res => {
+                    console.log(res);
+                    this.drawer = false;
+
+                    let data = JSON.parse(res.data);
+
+                    if(data.status == "failure") {
+                        ElNotification({
+                        message: '注册失败',
+                        type: 'error',
+                        showClose: false,
+                        duration: 2000
+                        });
+
+                        this.cancel();
+                    } else if(data.status == "success") {
+                        ElNotification({
+                        message: '注册成功',
+                        type: 'success',
+                        showClose: false,
+                        duration: 2000
+                        });
+
+                         // 设置本地存储
+                        // localStorage.setItem("menuid", JSON.stringify("1"));
+                        // 跳转路由
+                        // this.$router.replace({path: "/home"});
+                    }
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        },
+
         // 清除登录表单
         cancel() {
             this.user_form.num = "";
             this.user_form.pwd = "";
+            // console.log(md5("654321"));
         }
     }
 }

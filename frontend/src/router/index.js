@@ -36,12 +36,22 @@ const routes = [
         component: () => import("../views/side/ClassInfo.vue")
       },
       {
+        path: '/myself',
+        name: 'Myself',
+        component: () => import('../views/side/Myself.vue')
+      },
+      {
         path: '/about',
         name: 'About',
         component: () => import('../views/side/About.vue')
       },
     ]
   },
+  // {
+  //   path: '*',
+  //   name: '404',
+  //   component: () => import("../views/404.vue")
+  // },
   
 ]
 
