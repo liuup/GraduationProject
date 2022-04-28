@@ -60,6 +60,7 @@
 import { ElNotification } from 'element-plus'
 import axios from "axios"
 import md5 from "md5"
+import Cookies from "js-cookie"
 
 export default {
     data() {
@@ -122,11 +123,10 @@ export default {
                         duration: 2000
                         });
 
-                         // 设置本地存储
+                         // 设置跳转本地存储
                         localStorage.setItem("menuid", JSON.stringify("1"));
-                        // TODO: 设置本地存储的用户名
-                        localStorage.setItem("usernum", JSON.stringify(this.user_form.num));
-
+                        // 设置本地存储token
+                        Cookies.set("token", this.user_form.num);
                         // 跳转路由
                         this.$router.replace({path: "/home"});
                     }
@@ -184,7 +184,6 @@ export default {
         cancel() {
             this.user_form.num = "";
             this.user_form.pwd = "";
-            // console.log(md5("654321"));
         }
     }
 }

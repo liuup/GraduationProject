@@ -67,7 +67,8 @@
 
 <script>
 import { View, DataAnalysis, User, More } from "@element-plus/icons-vue";
-// <el-icon><view /></el-icon>
+import Cookies from "js-cookie"
+
 export default {
   name: "Home",
 
@@ -112,8 +113,8 @@ export default {
     },
 
     Exit() {
-      // 清除usernum
-      localStorage.removeItem("usernum");
+      // 清除token
+      Cookies.remove("token");
       this.$router.replace({ path: "/" });
     }
   },
