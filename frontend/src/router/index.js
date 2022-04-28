@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Cookies from "js-cookie"
+import { ElMessage } from 'element-plus'
 
 const routes = [
   {
@@ -68,6 +69,11 @@ router.beforeEach((to, from, next) => {
     const token = Cookies.get("token");
 
     if(token == null || token == "") {
+      ElMessage({
+        message: '用户未登录',
+        type: 'error',
+      })
+      
       next({name: "Login"});
     } else {
       next();

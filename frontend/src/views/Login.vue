@@ -57,7 +57,7 @@
 
 
 <script>
-import { ElNotification } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import axios from "axios"
 import md5 from "md5"
 import Cookies from "js-cookie"
@@ -86,11 +86,9 @@ export default {
         login() {
             // 错误处理
             if(this.user_form.num == "" || this.user_form.pwd == "") {
-                ElNotification({
-                message: '输入框禁止为空',
-                type: 'warning',
-                showClose: false,
-                duration: 2000
+                ElMessage({
+                    type: "warning",
+                    message: "输入框禁止为空"
                 })
 
                 this.cancel();
@@ -107,21 +105,17 @@ export default {
                     // console.log(data.status);
 
                     if(data.status == "failure") {
-                        ElNotification({
-                        message: '账号或密码错误',
-                        type: 'error',
-                        showClose: false,
-                        duration: 2000
-                        });
+                        ElMessage({
+                            type: "warning",
+                            message: "账号或密码错误"
+                        })
 
                         this.cancel();
                     } else if(data.status == "success") {
-                        ElNotification({
-                        message: '登录成功',
-                        type: 'success',
-                        showClose: false,
-                        duration: 2000
-                        });
+                        ElMessage({
+                            type: "success",
+                            message: "登录成功"
+                        })
 
                          // 设置跳转本地存储
                         localStorage.setItem("menuid", JSON.stringify("1"));
@@ -142,6 +136,9 @@ export default {
         },
 
         submit() {
+            // FIXME: 注册判空验证
+            // TODO: 注册接口测试
+
             this.reg_form.pwd = md5(this.reg_form.pwd);
 
             axios
@@ -153,21 +150,17 @@ export default {
                     let data = JSON.parse(res.data);
 
                     if(data.status == "failure") {
-                        ElNotification({
-                        message: '注册失败',
-                        type: 'error',
-                        showClose: false,
-                        duration: 2000
-                        });
+                        ElMessage({
+                            message: '注册失败',
+                            type: 'error',
+                        })
 
                         this.cancel();
                     } else if(data.status == "success") {
-                        ElNotification({
-                        message: '注册成功',
-                        type: 'success',
-                        showClose: false,
-                        duration: 2000
-                        });
+                        ElMessage({
+                            message: '注册成功',
+                            type: 'success',
+                        })
 
                          // 设置本地存储
                         // localStorage.setItem("menuid", JSON.stringify("1"));
