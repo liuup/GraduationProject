@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import HomeView from '../views/HomeView.vue'
+// import Cookies from "js-cookie"
 
 const routes = [
   {
     path: '/',
-    name: 'login',
+    name: 'Login',
     component: () => import("../views/Login.vue")
   },
   {
@@ -47,17 +47,28 @@ const routes = [
       },
     ]
   },
-  // {
-  //   path: '*',
-  //   name: '404',
-  //   component: () => import("../views/404.vue")
-  // },
+  {
+    path: '/:path(.*)',
+    name: 'NotFound',
+    component: () => import("../views/NotFound.vue")
+  },
   
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+// 导航守卫
+router.beforeEach((to, from, next) => {
+  const token = Cookies.get("token");
+
+  if(!token || to.name != "Login") {
+    next({name: "Login"});
+  } else {
+    next();
+  }
 })
 
 export default router
