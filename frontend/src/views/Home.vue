@@ -112,6 +112,8 @@ export default {
     },
 
     Exit() {
+      // 清除usernum
+      localStorage.removeItem("usernum");
       this.$router.replace({ path: "/" });
     }
   },

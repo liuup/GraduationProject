@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import Cookies from "js-cookie"
 
 const routes = [
   {
@@ -62,12 +61,16 @@ const router = createRouter({
 
 // 导航守卫
 router.beforeEach((to, from, next) => {
-  const token = Cookies.get("token");
-
-  if(!token || to.name != "Login") {
-    next({name: "Login"});
-  } else {
+  if(to.path === "/") {
     next();
+  } else {
+    const token = localStorage.getItem("usernum");
+
+    if(token === null || token === "") {
+      next({name: "Login"});
+    } else {
+      next();
+    }
   }
 })
 
