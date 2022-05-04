@@ -22,9 +22,9 @@ const routes = [
         component: () => import("../views/side/Overview.vue")
       },
       {
-        path: "/student",
-        name: "Student",
-        component: () => import("../views/side/Student.vue")
+        path: "/push",
+        name: "Push",
+        component: () => import("../views/side/Push.vue")
       },
       {
         path: "/class",
@@ -32,19 +32,19 @@ const routes = [
         component: () => import("../views/side/Class.vue")
       },
       {
-        path: "/classinfo",
-        name: "ClassInfo",
-        component: () => import("../views/side/ClassInfo.vue")
+        path: "/teacher",
+        name: "Teacher",
+        component: () => import("../views/side/Teacher.vue")
       },
       {
-        path: '/myself',
-        name: 'Myself',
-        component: () => import('../views/side/Myself.vue')
+        path: "/student",
+        name: "Student",
+        component: () => import("../views/side/Student.vue")
       },
       {
-        path: '/about',
-        name: 'About',
-        component: () => import('../views/side/About.vue')
+        path: '/me',
+        name: 'Me',
+        component: () => import('../views/side/Me.vue')
       },
     ]
   },

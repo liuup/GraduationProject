@@ -1,32 +1,48 @@
 <template>
     <div class="backimage">
         <div class="meituan-content">
+            <div class="title">高校学情分析可视化平台</div>
+
             <div class="login-content">
-                <div class="title">高校学情分析可视化平台</div>
+                <el-row>
+                    <el-col :span="6" class="left-col">
+                        <div class="left-buttons">
+                            <el-button class="left-button" :type="stu_btn_type" @click="StudentBtn()">学生</el-button><br/>
+                            <el-button class="left-button" :type="teach_btn_type" @click="TeachBtn()">教师</el-button><br/>
+                            <el-button class="left-button" :type="admin_btn_type" @click="AdminBtn()">管理员</el-button><br/>
+                        </div>
+                    </el-col>
+                    <el-col :span="12">
+                        <span class="login-text">{{ login_text }}</span>
 
-                <div class="user">
-                    <p>账号</p>
-                    <el-input
-                        class="inputflex"
-                        v-model="user_form.num"
-                        placeholder="测试账号123456"
-                        clearable
-                    ></el-input>
-                </div>
+                        <div>
+                            <div class="user">
+                                <p>账号</p>
+                                <el-input
+                                    class="inputflex"
+                                    v-model="user_form.num"
+                                    placeholder="测试账号123456"
+                                    clearable
+                                ></el-input>
+                            </div>
 
-                <div class="user">
-                    <p>密码</p>
-                    <el-input
-                        class="inputflex"
-                        v-model="user_form.pwd"
-                        placeholder="测试密码654321"
-                        type="password"
-                        clearable
-                    ></el-input>
-                </div>
+                            <div class="user">
+                                <p>密码</p>
+                                <el-input
+                                    class="inputflex"
+                                    v-model="user_form.pwd"
+                                    placeholder="测试密码654321"
+                                    type="password"
+                                    clearable
+                                ></el-input>
+                            </div>
 
-                <el-button class="btn" @click="login()" type="primary">登录</el-button>
-                <el-button class="btn" @click="register()">注册</el-button>  
+                            <el-button class="btn" @click="login()" type="primary">登录</el-button>
+                            <!-- <el-button class="btn" @click="cancel()">清空</el-button> -->
+                        </div>
+                        
+                    </el-col>
+                </el-row>
             </div>
         </div>
 
@@ -67,6 +83,13 @@ export default {
         return {
             drawer: false,
 
+            login_text: "学生",
+
+            // 三个按钮的显示类型
+            stu_btn_type: "primary",
+            teach_btn_type: "default",
+            admin_btn_type: "default",
+
             reg_form: {
                 name: "",   // 姓名
                 num: "",    // 账号
@@ -83,6 +106,34 @@ export default {
         }
     },
     methods: {
+        // 学生登录切换按键
+        StudentBtn() {
+            this.stu_btn_type = "primary";
+            this.teach_btn_type = "default";
+            this.admin_btn_type = "default";
+
+            // TODO:
+        },
+
+        // 老师登录切换按键
+        TeachBtn() {
+            this.stu_btn_type = "default";
+            this.teach_btn_type = "primary";
+            this.admin_btn_type = "default";
+
+            // TODO:
+        },
+
+        // 管理员登录切换按键
+        AdminBtn() {
+            this.stu_btn_type = "default";
+            this.teach_btn_type = "default";
+            this.admin_btn_type = "primary";
+
+            // TODO:
+        },
+
+        // 登录按钮
         login() {
             // 错误处理
             if(this.user_form.num == "" || this.user_form.pwd == "") {
@@ -131,13 +182,38 @@ export default {
                 })
         },
 
+        // 注册按钮
         register() {
             this.drawer = true;
         },
 
+        // 注册提交按钮
         submit() {
             // FIXME: 注册判空验证
+
             // TODO: 注册接口测试
+            // TODO: 注册日期功能添加
+
+            /*
+            reg_form: {
+                name: "",   // 姓名
+                num: "",    // 账号
+                pwd: "",    // 密码
+                phone: "",   // 手机号
+                date: "2022-04-15"  // 登录日期
+            },
+            */
+
+            if(this.reg_form.name == "" || this.reg_form.num == "" || 
+                this.reg_form.pwd == "" || this.reg_form.phone == "") {
+                ElMessage({
+                    message: '输入框禁止为空',
+                    type: 'warning',
+                });
+                
+                this.cancel();
+                return;
+            }
 
             this.reg_form.pwd = md5(this.reg_form.pwd);
 
@@ -161,7 +237,7 @@ export default {
                             message: '注册成功',
                             type: 'success',
                         })
-
+                        this.cancel();
                          // 设置本地存储
                         // localStorage.setItem("menuid", JSON.stringify("1"));
                         // 跳转路由
@@ -177,6 +253,13 @@ export default {
         cancel() {
             this.user_form.num = "";
             this.user_form.pwd = "";
+
+            this.reg_form.name = "";
+            this.reg_form.num = "";
+            this.reg_form.pwd = "";
+            this.reg_form.phone = "";
+            // TODO: 注册日期
+            // this.reg_form.date = "";
         }
     }
 }
@@ -200,27 +283,32 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    box-shadow: 2px 2px 5px #813c85;
+    /* box-shadow: 2px 2px 5px #813c85; */
 }
 .login-content {
-    width: 500px;
-    height: 300px;
+    width: 650px;
+    height: 400px;
     background: #d1c2d3;
     border-radius: 10px;
+    box-shadow: 2px 2px 5px #813c85;
 }
 .title {
     text-align: center;
-    color: #000000;
-    font-size: 30px;
+    color:  #337ecc;
+    font-size: 45px;
     padding-top: 30px;
+    padding-bottom: 30px;
 }
 .user {
     width: 400px;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     padding-top: 30px;
     height: 40px;
     display: flex;
     align-items: center;
+
+    margin-top: 20px;
+    margin-left: 20px;
 }
 .user p {
     width: 50px;
@@ -248,5 +336,35 @@ export default {
     margin-left: 33px;
     align-items: center;
     /* display: flex; */
+}
+
+.login-text {
+    font-size: 30px;
+    margin-left: 200px;
+    margin-top: 80px;
+}
+
+.left-col {
+    border: 10px;
+    border-right-style: solid;
+    border-width: 2px;
+    border-color: white;
+}
+.left-buttons {
+    margin-top: 40px;
+    height: 360px;
+    /* border: 10px; */
+    /* align-content: center; */
+}
+.left-button {
+    margin-top: 55px;
+    margin-left: 40px;
+    width: 80px;
+    
+}
+
+
+.right-login {
+    margin-right: 20px;
 }
 </style>

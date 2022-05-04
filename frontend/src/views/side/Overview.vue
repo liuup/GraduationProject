@@ -1,6 +1,6 @@
 <template>
   <div class="overview-main">
-    <h1>学情总览</h1>
+    <h1>平台总览</h1>
     <!-- <div style="width: 600px;height:400px;"> -->
     <!-- <Bar :option="bar_data"></Bar> -->
     <!-- </div> -->
@@ -12,14 +12,14 @@
         <Round :option="round_data"></Round>
       </el-col>
     </el-row>
-	<el-row>
+	  <!-- <el-row>
       <el-col :span="12">
         <Bar :option="bar_data"></Bar>
       </el-col>
       <el-col :span="12">
         <Round :option="round_data"></Round>
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
     return {
       bar_data: {
         title: {
-          text: "Where data comes from",
+          text: "平台数据来源",
           //   subtext: "Living Expenses in Shenzhen",
         },
         tooltip: {
@@ -80,7 +80,7 @@ export default {
                 color: "transparent",
               },
             },
-            data: [0, 1579, 532, 0],
+            data: [0, 1579 + 585, 532, 0],
           },
           {
             name: "Life Cost",
@@ -90,14 +90,14 @@ export default {
               show: true,
               position: "inside",
             },
-            data: [8517, 6938, 1047, 532],
+            data: [8517 + 585, 6938, 1047 + 585, 532],
           },
         ],
       },
 
       round_data: {
         title: {
-          text: "Where data comes from",
+          text: "平台数据来源",
         //   subtext: "Fake Data",
           left: "center",
         },
@@ -115,7 +115,7 @@ export default {
             radius: "50%",
             data: [
               { value: 6938, name: "CG" },
-              { value: 1047, name: "雨课堂" },
+              { value: 1047 + 585, name: "雨课堂" },
               { value: 532, name: "超星" },
             //   { value: 484, name: "Union Ads" },
             //   { value: 300, name: "Video Ads" },

@@ -93,23 +93,25 @@ class RegUser(BaseModel):
 def register(reguser: RegUser):
     print(reguser)
 
-    cnx = mysql.connector.connect(**localdb)
-    # 查询游针
-    cursor = cnx.cursor()
+    # cnx = mysql.connector.connect(**localdb)
+    # # 查询游针
+    # cursor = cnx.cursor()
     
-    # 获取post请求体的字典类型数据
-    user_dict = json.loads(reguser.json())
+    # # 获取post请求体的字典类型数据
+    # user_dict = json.loads(reguser.json())
 
-    sql = "insert into user(name, password, last_logintime, phone, num) values ('{}', '{}', '{}', '{}', '{}')"\
-        .format(user_dict["name"], user_dict["pwd"], user_dict["date"], user_dict["phone"], user_dict["num"])
+    # sql = "insert into user(name, password, last_logintime, phone, num) values ('{}', '{}', '{}', '{}', '{}')"\
+    #     .format(user_dict["name"], user_dict["pwd"], user_dict["date"], user_dict["phone"], user_dict["num"])
     
-    cursor.execute(sql)
-    cnx.commit()
+    # cursor.execute(sql)
+    # cnx.commit()
 
-    cursor.close()
-    cnx.close()
+    # cursor.close()
+    # cnx.close()
 
-    if cursor.rowcount == 0:
-        return failure_json
-    else:
-        return success_json
+    # if cursor.rowcount == 0:
+    #     return failure_json
+    # else:
+    #     return success_json
+    
+    return failure_json
