@@ -20,8 +20,8 @@
                                 <p>账号</p>
                                 <el-input
                                     class="inputflex"
-                                    v-model="user_form.num"
-                                    placeholder="测试账号123456"
+                                    v-model="user_form.account"
+                                    :placeholder="account_placeholder"
                                     clearable
                                 ></el-input>
                             </div>
@@ -31,7 +31,7 @@
                                 <el-input
                                     class="inputflex"
                                     v-model="user_form.pwd"
-                                    placeholder="测试密码654321"
+                                    :placeholder="pwd_placeholder"
                                     type="password"
                                     clearable
                                 ></el-input>
@@ -81,8 +81,10 @@ import Cookies from "js-cookie"
 export default {
     data() {
         return {
+            // 是否显示右方注册抽屉
             drawer: false,
 
+            // 右方文字显示
             login_text: "学生",
 
             // 三个按钮的显示类型
@@ -90,6 +92,11 @@ export default {
             teach_btn_type: "default",
             admin_btn_type: "default",
 
+            // 登录窗口占位字符，初始显示文字
+            account_placeholder: "学生 测试账号stu",
+            pwd_placeholder: "学生 测试密码654321",
+
+            // 注册表单
             reg_form: {
                 name: "",   // 姓名
                 num: "",    // 账号
@@ -99,8 +106,10 @@ export default {
             },
 
             // isloading: false,   // 登录按键是否正在加载，true为加载，false为不在加载
+            
+            // 登录表单
             user_form: {
-                num: "",	// 用户账号
+                account: "",	// 用户账号
                 pwd: ""	// 用户密码
             },
         }
@@ -108,35 +117,57 @@ export default {
     methods: {
         // 学生登录切换按键
         StudentBtn() {
+            // 左方互斥切换
             this.stu_btn_type = "primary";
             this.teach_btn_type = "default";
             this.admin_btn_type = "default";
 
-            // TODO:
+            // 右方标题文字显示
+            this.login_text = "学生";
+
+            // 学生登录时占位字符的显示
+            this.account_placeholder = "学生 测试账号stu";
+            this.pwd_placeholder = "学生 测试密码654321";
+
+            // TODO: 学生数据库设计
         },
 
         // 老师登录切换按键
         TeachBtn() {
+            // 互斥切换
             this.stu_btn_type = "default";
             this.teach_btn_type = "primary";
             this.admin_btn_type = "default";
 
-            // TODO:
+            this.login_text = "教师";
+
+            // 教师登录时占位字符的显示
+            this.account_placeholder = "教师 测试账号teacher";
+            this.pwd_placeholder = "教师 测试密码654321";
+
+            // TODO: 教师数据库设计
         },
 
         // 管理员登录切换按键
         AdminBtn() {
+            // 互斥切换
             this.stu_btn_type = "default";
             this.teach_btn_type = "default";
             this.admin_btn_type = "primary";
 
-            // TODO:
+            this.login_text = "管理员";
+
+            // 管理员登录时占位字符的显示
+            this.account_placeholder = "管理员 测试账号admin";
+            this.pwd_placeholder = "管理员 测试密码654321";
+
+            // TODO: 管理员数据库设计
         },
 
         // 登录按钮
         login() {
             // 错误处理
-            if(this.user_form.num == "" || this.user_form.pwd == "") {
+            if(this.user_form.account == "" || this.user_form.pwd == "") {
                 ElMessage({
                     type: "warning",
                     message: "输入框禁止为空"
