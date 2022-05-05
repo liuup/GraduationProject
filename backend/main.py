@@ -33,6 +33,11 @@ localdb = {
 success_json = json.dumps({"status": "success"})
 failure_json = json.dumps({"status": "failure"})
 
+# 权限路由配置
+stu_root_router = "/stu"
+teacher_root_router = "/teacher"
+admin_root_router = "/admin"
+
 
 '''
 测试接口
@@ -42,24 +47,24 @@ def root():
     return success_json
 
 '''
-用户登录接口
+学生登录接口
 '''
-class User(BaseModel):
-    num: str
+class Student(BaseModel):
+    account: str
     pwd: str
 
 @app.post("/login")
-def login(user: User):
-    # print(user)
+def login(stu: Student):
+    print(stu)
     cnx = mysql.connector.connect(**localdb)
     # 查询游针
     cursor = cnx.cursor()
 
     # 将接收到的数据转为字典
-    post_dict = json.loads(user.json())
+    post_dict = json.loads(stu.json())
 
-    query_sql = "select * from user where num = '{}' and password = '{}'"\
-        .format(post_dict["num"], post_dict["pwd"])
+    query_sql = "select * from students where account = '{}' and password = '{}'"\
+        .format(post_dict["account"], post_dict["pwd"])
 
     cursor.execute(query_sql)
 
