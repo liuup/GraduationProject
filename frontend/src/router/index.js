@@ -54,6 +54,20 @@ const routes = [
     ]
   },
   {
+    path: "/teacher/home",
+    name: "TeacherHome",
+    component: () => import("../views/TeacherHome.vue"),
+    redirect: "/teacher/overview",
+
+    children: [
+      {
+        path: "/teacher/overview",
+        name: "TeacherOverview",
+        component: () => import("../views/teacher/Overview.vue")
+      },
+    ]
+  },
+  {
     path: '/:path(.*)',
     name: 'NotFound',
     component: () => import("../views/NotFound.vue")

@@ -1,5 +1,7 @@
 <template>
-    <h1>Teacher</h1>
+    <div class="teacher-main">
+
+    </div>
 </template>
 
 <script>

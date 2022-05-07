@@ -214,8 +214,15 @@ export default {
                         // 设置本地存储token
                         Cookies.set("token", this.user_form.account);
                         // 跳转路由
-                        // TODO: 分权限跳转
-                        this.$router.replace({path: "/admin/home"});
+                        // TODO: 分权限跳转s
+                        if(this.user_form.identity == "students") {
+                            // this.$router.replace({path: "/admin/home"});
+                            // TODO: 学生路由跳转
+                        } else if(this.user_form.identity == "teachers") {
+                            this.$router.replace({path: "/teacher/home"});
+                        } else if(this.user_form.identity == "admins") {
+                            this.$router.replace({path: "/admin/home"});
+                        }
                     }
                 })
                 .catch(err => {
