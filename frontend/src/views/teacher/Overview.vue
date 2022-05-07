@@ -1,7 +1,7 @@
 <template>
     <!-- 课程总览 -->
     <div class="overview-main">
-
+        <h1>课程总览</h1>
     </div>
 </template>
 

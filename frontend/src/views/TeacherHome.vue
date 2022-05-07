@@ -22,28 +22,28 @@
                   </div>
                 </el-menu-item>
 
-                <!-- <el-menu-item index="2" @click="Push()">
-                  <div class="menu-item">
-                    <el-icon><Notification /></el-icon>
-                    <span>公告发布</span>
-                  </div>
-                </el-menu-item>
-
-                <el-menu-item index="3" @click="Class()">
+                <el-menu-item index="2" @click="Class()">
                   <div class="menu-item">
                     <el-icon><DataAnalysis /></el-icon>
                     <span>课程管理</span>
                   </div>
                 </el-menu-item>
 
-                <el-menu-item index="4" @click="Teacher()">
+                <el-menu-item index="3" @click="Student()">
                   <div class="menu-item">
-                    <el-icon><School /></el-icon>
-                    <span>教师管理</span>
+                    <el-icon><User /></el-icon>
+                    <span>学生管理</span>
                   </div>
                 </el-menu-item>
 
-                <el-menu-item index="5" @click="Student()">
+                <el-menu-item index="4" @click="Me()">
+                  <div class="menu-item">
+                    <el-icon><More /></el-icon>
+                    <span>个人中心</span>
+                  </div>
+                </el-menu-item>
+
+                <!-- <el-menu-item index="5" @click="Student()">
                   <div class="menu-item">
                     <el-icon><User /></el-icon>
                     <span>学生管理</span>
@@ -110,17 +110,17 @@ export default {
       this.$router.replace({ path: "/teacher/overview" });
     },
 
-    // Push() {
-    //   this.$router.replace({ path: "/admin/push" });
-    // },
+    Class() {
+      this.$router.replace({ path: "/teacher/class" });
+    },
 
-    // Class() {
-    //   this.$router.replace({ path: "/admin/class" });
-    // },
+    Student() {
+      this.$router.replace({ path: "/teacher/student" });
+    },
 
-    // Teacher() {
-    //   this.$router.replace({ path: "/admin/teacher" });
-    // },
+    Me() {
+      this.$router.replace({ path: "/teacher/me" });
+    },
 
     // Student() {
     //   this.$router.replace({ path: "/admin/student" });

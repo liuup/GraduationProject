@@ -1,7 +1,7 @@
 <template>
     <!-- 学生管理 -->
     <div class="student-main">
-        
+        <h1>学生管理</h1>
     </div>
 </template>
 
