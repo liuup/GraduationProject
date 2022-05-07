@@ -107,27 +107,27 @@ export default {
     },
 
     Overview() {
-      this.$router.replace({ path: "/overview" });
+      this.$router.replace({ path: "/admin/overview" });
     },
 
     Push() {
-      this.$router.replace({ path: "/push" });
+      this.$router.replace({ path: "/admin/push" });
     },
 
     Class() {
-      this.$router.replace({ path: "/class" });
+      this.$router.replace({ path: "/admin/class" });
     },
 
     Teacher() {
-      this.$router.replace({ path: "/teacher" });
+      this.$router.replace({ path: "/admin/teacher" });
     },
 
     Student() {
-      this.$router.replace({ path: "/student" });
+      this.$router.replace({ path: "/admin/student" });
     },
 
     Me() {
-      this.$router.replace({ path: "/me" });
+      this.$router.replace({ path: "/admin/me" });
     },
 
     Exit() {

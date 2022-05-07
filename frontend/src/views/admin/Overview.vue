@@ -46,10 +46,6 @@ export default {
           axisPointer: {
             type: "shadow",
           },
-          formatter: function (params) {
-            var tar = params[1];
-            return tar.name + "<br/>" + tar.seriesName + " : " + tar.value;
-          },
         },
         grid: {
           left: "3%",

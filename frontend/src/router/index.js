@@ -12,39 +12,39 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: () => import("../views/Home.vue"),
-    redirect: "/overview",
+    redirect: "/admin/overview",
 
     // 二级路由
     children: [
       {
-        path: "/overview",
+        path: "/admin/overview",
         name: "Overview",
-        component: () => import("../views/side/Overview.vue")
+        component: () => import("../views/admin/Overview.vue")
       },
       {
-        path: "/push",
+        path: "/admin/push",
         name: "Push",
-        component: () => import("../views/side/Push.vue")
+        component: () => import("../views/admin/Push.vue")
       },
       {
-        path: "/class",
+        path: "/admin/class",
         name: "Class",
-        component: () => import("../views/side/Class.vue")
+        component: () => import("../views/admin/Class.vue")
       },
       {
-        path: "/teacher",
+        path: "/admin/teacher",
         name: "Teacher",
-        component: () => import("../views/side/Teacher.vue")
+        component: () => import("../views/admin/Teacher.vue")
       },
       {
-        path: "/student",
+        path: "/admin/student",
         name: "Student",
-        component: () => import("../views/side/Student.vue")
+        component: () => import("../views/admin/Student.vue")
       },
       {
-        path: '/me',
+        path: '/admin/me',
         name: 'Me',
-        component: () => import('../views/side/Me.vue')
+        component: () => import('../views/admin/Me.vue')
       },
     ]
   },
