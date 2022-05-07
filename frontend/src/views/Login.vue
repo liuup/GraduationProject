@@ -109,6 +109,7 @@ export default {
             
             // 登录表单
             user_form: {
+                identity: "students",   // 权限查询数据库表。默认查询学生
                 account: "",	// 用户账号
                 pwd: ""	// 用户密码
             },
@@ -129,6 +130,9 @@ export default {
             this.account_placeholder = "学生 测试账号stu";
             this.pwd_placeholder = "学生 测试密码654321";
 
+            // 查询数据表更改
+            this.user_form.identity = "students";
+
             // TODO: 学生数据库设计
         },
 
@@ -145,6 +149,9 @@ export default {
             this.account_placeholder = "教师 测试账号teacher";
             this.pwd_placeholder = "教师 测试密码654321";
 
+            // 查询数据表更改
+            this.user_form.identity = "teachers";
+
             // TODO: 教师数据库设计
         },
 
@@ -160,6 +167,9 @@ export default {
             // 管理员登录时占位字符的显示
             this.account_placeholder = "管理员 测试账号admin";
             this.pwd_placeholder = "管理员 测试密码654321";
+
+            // 查询数据表更改
+            this.user_form.identity = "admins";
 
             // TODO: 管理员数据库设计
         },
@@ -202,7 +212,7 @@ export default {
                          // 设置跳转本地存储
                         localStorage.setItem("menuid", JSON.stringify("1"));
                         // 设置本地存储token
-                        Cookies.set("token", this.user_form.num);
+                        Cookies.set("token", this.user_form.account);
                         // 跳转路由
                         this.$router.replace({path: "/home"});
                     }
@@ -211,6 +221,7 @@ export default {
 
                     console.log(err);
                 })
+            this.cancel();
         },
 
         // 注册按钮

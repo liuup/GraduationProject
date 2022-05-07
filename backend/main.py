@@ -1,4 +1,3 @@
-# from ast import Num
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -33,7 +32,7 @@ localdb = {
 success_json = json.dumps({"status": "success"})
 failure_json = json.dumps({"status": "failure"})
 
-# 权限路由配置
+# 权限根路由配置
 stu_root_router = "/stu"
 teacher_root_router = "/teacher"
 admin_root_router = "/admin"
@@ -46,24 +45,30 @@ admin_root_router = "/admin"
 def root():
     return success_json
 
+
+
 '''
 学生登录接口
 '''
-class Student(BaseModel):
-    account: str
-    pwd: str
+class User(BaseModel):
+    identity: str   # 身份
+    account: str    # 账号
+    pwd: str        # 密码
 
 @app.post("/login")
-def login(stu: Student):
-    print(stu)
+def login(user: User):
+    print(user)
     cnx = mysql.connector.connect(**localdb)
     # 查询游针
     cursor = cnx.cursor()
 
     # 将接收到的数据转为字典
-    post_dict = json.loads(stu.json())
+    post_dict = json.loads(user.json())
 
-    query_sql = "select * from students where account = '{}' and password = '{}'"\
+    # 用户权限查询数据库表
+    table = post_dict["identity"]
+
+    query_sql = "select * from " + table + " where account = '{}' and password = '{}'"\
         .format(post_dict["account"], post_dict["pwd"])
 
     cursor.execute(query_sql)
@@ -82,6 +87,8 @@ def login(stu: Student):
         return success_json
     else:
         return failure_json
+
+
 
 
 '''
