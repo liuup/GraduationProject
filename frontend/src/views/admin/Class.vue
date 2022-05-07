@@ -1,6 +1,6 @@
 <template>
   <div class="class-main">
-    <h1>课程分析</h1>
+    <h1>课程管理</h1>
     <el-table :data="tableData" stripe height="600px" style="width: 100%">
       <el-table-column prop="date" label="日期" width="180" />
       <el-table-column prop="name" label="课程名称" width="180" />
@@ -58,7 +58,7 @@ export default {
     handleShowClass(index) {
       console.log(index);
       localStorage.setItem("classindex", JSON.stringify(index));
-      this.$router.push({ path: "/classinfo" });
+      this.$router.push({ path: "/admin/classinfo" });
     },
     
   }

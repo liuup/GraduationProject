@@ -214,7 +214,8 @@ export default {
                         // 设置本地存储token
                         Cookies.set("token", this.user_form.account);
                         // 跳转路由
-                        this.$router.replace({path: "/home"});
+                        // TODO: 分权限跳转
+                        this.$router.replace({path: "/admin/home"});
                     }
                 })
                 .catch(err => {

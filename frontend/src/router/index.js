@@ -9,41 +9,46 @@ const routes = [
     component: () => import("../views/Login.vue")
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: () => import("../views/Home.vue"),
+    path: '/admin/home',
+    name: 'AdminHome',
+    component: () => import("../views/AdminHome.vue"),
     redirect: "/admin/overview",
 
     // 二级路由
     children: [
       {
         path: "/admin/overview",
-        name: "Overview",
+        name: "AdminOverview",
         component: () => import("../views/admin/Overview.vue")
       },
       {
         path: "/admin/push",
-        name: "Push",
+        name: "AdminPush",
         component: () => import("../views/admin/Push.vue")
       },
       {
         path: "/admin/class",
-        name: "Class",
+        name: "AdminClass",
         component: () => import("../views/admin/Class.vue")
       },
       {
+        path: "/admin/classinfo",
+        name: "AdminClassinfo",
+        component: () => import("../views/admin/ClassInfo.vue")
+      },
+      {
         path: "/admin/teacher",
-        name: "Teacher",
+        name: "AdminTeacher",
         component: () => import("../views/admin/Teacher.vue")
       },
       {
         path: "/admin/student",
-        name: "Student",
+        name: "AdminStudent",
         component: () => import("../views/admin/Student.vue")
       },
       {
         path: '/admin/me',
-        name: 'Me',
+        name: 'AdminMe',
         component: () => import('../views/admin/Me.vue')
       },
     ]

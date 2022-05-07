@@ -1,6 +1,6 @@
 <template>
   <div class="student-main">
-    <h1>学生分析</h1>
+    <h1>学生管理</h1>
 
     <!-- <el-row>
       <el-col :span="12">
