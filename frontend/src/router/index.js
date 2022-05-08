@@ -83,6 +83,25 @@ const routes = [
     ]
   },
   {
+    path: "/stu/home",
+    name: "StuHome",
+    component: () => import("../views/StuHome.vue"),
+    redirect: "/stu/overview",
+
+    children: [
+      {
+        path: "/stu/overview",
+        name: "StuOverview",
+        component: () => import("../views/stu/Overview.vue")
+      },
+      {
+        path: "/stu/me",
+        name: "StuMe",
+        component: () => import("../views/stu/Me.vue")
+      },
+    ]
+  },
+  {
     path: '/:path(.*)',
     name: 'NotFound',
     component: () => import("../views/NotFound.vue")
