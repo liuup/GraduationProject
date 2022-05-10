@@ -9,9 +9,9 @@
             <div class="card-header">
               <span>{{ item.title }}</span>
               <el-button-group class="ml-4">
-                <el-button type="default" @click="CardEdit(item.id)"
+                <!-- <el-button type="default" @click="CardEdit(item.id)"
                   >编辑</el-button
-                >
+                > -->
                 <el-button type="danger" @click="CardDelete(item.id)"
                   >删除</el-button
                 >
@@ -83,40 +83,74 @@ export default {
         message: "", // 内容
         msg_date: "", // 日期
       },
+
+	  // 卡片删除表单
+	  card_del_form: {
+		  cardid: "" // 公告id
+	  }
     };
   },
 
   methods: {
     // 编辑卡片信息
     CardEdit(cardid) {
-		console.log(cardid);
-		// TODO: 卡片编辑接口
+      console.log(cardid);
+      // TODO: 卡片编辑接口
     },
 
     // 删除卡片
     CardDelete(cardid) {
-    	console.log("delete" + cardid);
+      console.log("delete" + cardid);
 
-		// TODO: 卡片删除接口
+      // TODO: 卡片删除接口
 
 		ElMessageBox.confirm("这将会永远删除此公告，是否继续？", "Warning", {
 		confirmButtonText: "确认删除",
-		cancelButtonText: "取消",
+		// cancelButtonText: "取消",
 		type: "warning",
 		})
-		.then(() => {
-			ElMessage({
-			type: "success",
-			message: "已删除公告",
-			});
-			// TODO: 添加删除接口
-		})
-		.catch(() => {
-			ElMessage({
-			type: "info",
-			message: "取消",
-			});
-		});
+        .then(() => {
+        //   ElMessage({
+        //     type: "success",
+        //     message: "已删除公告",
+        //   });
+		
+          	// TODO: 添加删除接口
+		
+			this.card_del_form.cardid = cardid;
+
+			axios
+				.post("http://127.0.0.1:8000/notices/delete", this.card_del_form)
+				.then((res) => {
+				let data = JSON.parse(res.data);
+				// console.log(data.status);
+
+				if (data.status == "failure") {
+					ElMessage({
+					type: "warning",
+					message: "删除失败",
+					});
+
+					// this.cancel();
+				} else if (data.status == "success") {
+					ElMessage({
+					type: "success",
+					message: "删除成功",
+					});
+
+					this.$router.go(0);	// 刷新页面
+				}
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+        })
+        .catch(() => {
+          ElMessage({
+            type: "info",
+            message: "取消",
+          });
+        });
     },
 
     // 增加卡片
@@ -150,6 +184,8 @@ export default {
               type: "success",
               message: "添加成功",
             });
+
+			this.$router.go(0); // 刷新页面
           }
         })
         .catch((err) => {

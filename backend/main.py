@@ -237,11 +237,29 @@ def noticeEdit():
 '''
 公告删除接口
 '''
-# class Notice(BaseModel):
-#     title: str
-#     message: str
-#     msg_date: str
+class NoticeDelete(BaseModel):
+    cardid: str
 
 @app.post("/notices/delete")
-def noticeDelete():
-    return failure_json
+def noticeDelete(noticedel: NoticeDelete):
+    print(noticedel)
+    cnx = mysql.connector.connect(**localdb)
+    # 查询游针
+    cursor = cnx.cursor()
+
+    # 获取post请求体的字典类型数据
+    notice_dict = json.loads(noticedel.json())
+
+    sql = "delete from notices where id = '{}'".format(notice_dict["cardid"])
+    print(sql)
+    
+    cursor.execute(sql)
+    cnx.commit()
+
+    cursor.close()
+    cnx.close()
+
+    if cursor.rowcount == 0:
+        return failure_json
+    else:
+        return success_json
