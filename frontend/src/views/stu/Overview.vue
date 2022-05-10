@@ -10,5 +10,7 @@
 </script>
 
 <style scoped>
-
+.overview-main {
+    height: 650px;
+}
 </style>

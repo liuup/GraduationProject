@@ -1,73 +1,74 @@
 <template>
-    <div class="backimage">
-        <div class="meituan-content">
-            <div class="title">高校学情分析可视化平台</div>
+    <div class="backimage"></div>
+    
+    <div class="meituan-content">
+        <div class="title">高校学情分析可视化平台</div>
 
-            <div class="login-content">
-                <el-row>
-                    <el-col :span="6" class="left-col">
-                        <div class="left-buttons">
-                            <el-button class="left-button" :type="stu_btn_type" @click="StudentBtn()">学生</el-button><br/>
-                            <el-button class="left-button" :type="teach_btn_type" @click="TeachBtn()">教师</el-button><br/>
-                            <el-button class="left-button" :type="admin_btn_type" @click="AdminBtn()">管理员</el-button><br/>
+        <div class="login-content">
+            <el-row>
+                <el-col :span="6" class="left-col">
+                    <div class="left-buttons">
+                        <el-button class="left-button" :type="stu_btn_type" @click="StudentBtn()">学生</el-button><br/>
+                        <el-button class="left-button" :type="teach_btn_type" @click="TeachBtn()">教师</el-button><br/>
+                        <el-button class="left-button" :type="admin_btn_type" @click="AdminBtn()">管理员</el-button><br/>
+                    </div>
+                </el-col>
+                <el-col :span="12">
+                    <span class="login-text">{{ login_text }}</span>
+
+                    <div>
+                        <div class="user">
+                            <p>账号</p>
+                            <el-input
+                                class="inputflex"
+                                v-model="user_form.account"
+                                :placeholder="account_placeholder"
+                                clearable
+                            ></el-input>
                         </div>
-                    </el-col>
-                    <el-col :span="12">
-                        <span class="login-text">{{ login_text }}</span>
 
-                        <div>
-                            <div class="user">
-                                <p>账号</p>
-                                <el-input
-                                    class="inputflex"
-                                    v-model="user_form.account"
-                                    :placeholder="account_placeholder"
-                                    clearable
-                                ></el-input>
-                            </div>
-
-                            <div class="user">
-                                <p>密码</p>
-                                <el-input
-                                    class="inputflex"
-                                    v-model="user_form.pwd"
-                                    :placeholder="pwd_placeholder"
-                                    type="password"
-                                    clearable
-                                ></el-input>
-                            </div>
-
-                            <el-button class="btn" @click="login()" type="primary">登录</el-button>
-                            <!-- <el-button class="btn" @click="cancel()">清空</el-button> -->
+                        <div class="user">
+                            <p>密码</p>
+                            <el-input
+                                class="inputflex"
+                                v-model="user_form.pwd"
+                                :placeholder="pwd_placeholder"
+                                type="password"
+                                clearable
+                            ></el-input>
                         </div>
-                        
-                    </el-col>
-                </el-row>
-            </div>
+
+                        <el-button class="btn" @click="login()" type="primary">登录</el-button>
+                        <!-- <el-button class="btn" @click="cancel()">清空</el-button> -->
+                    </div>
+                    
+                </el-col>
+            </el-row>
         </div>
-
-        <el-drawer v-model="drawer" >
-            <el-form
-                label-position="top"
-                label-width="100px"
-                :model="reg_form"
-            >
-                <el-form-item label="姓名">
-                    <el-input v-model="reg_form.name" />
-                </el-form-item>
-                <el-form-item label="账号">
-                    <el-input v-model="reg_form.num" />
-                </el-form-item>
-                <el-form-item label="密码">
-                    <el-input v-model="reg_form.pwd" type="password" />
-                </el-form-item>
-                <el-form-item label="手机号">
-                    <el-input v-model="reg_form.phone" />
-                </el-form-item>
-            </el-form>
-            <el-button type="primary" @click="submit()">提交</el-button>
-        </el-drawer>
     </div>
+
+    <el-drawer v-model="drawer" >
+        <el-form
+            label-position="top"
+            label-width="100px"
+            :model="reg_form"
+        >
+            <el-form-item label="姓名">
+                <el-input v-model="reg_form.name" />
+            </el-form-item>
+            <el-form-item label="账号">
+                <el-input v-model="reg_form.num" />
+            </el-form-item>
+            <el-form-item label="密码">
+                <el-input v-model="reg_form.pwd" type="password" />
+            </el-form-item>
+            <el-form-item label="手机号">
+                <el-input v-model="reg_form.phone" />
+            </el-form-item>
+        </el-form>
+        <el-button type="primary" @click="submit()">提交</el-button>
+    </el-drawer>
+    
 </template>
 
 
@@ -324,6 +325,7 @@ export default {
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh;
+    filter: blur(6px);
 }
 .meituan-content {
     position: absolute;

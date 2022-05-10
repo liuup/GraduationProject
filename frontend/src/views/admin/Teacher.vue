@@ -9,5 +9,7 @@
 </script>
 
 <style scoped>
-
+.teacher-main {
+  height: 650px;
+}
 </style>

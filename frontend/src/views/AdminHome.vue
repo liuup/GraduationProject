@@ -4,9 +4,7 @@
       <el-header class="header">
         <img src="../assets/saulogo_blue_800x800.png" style="width:20px;">
         <span> 高校学情分析可视化平台 - 管理员后台</span>
-        <el-button type="danger" class="exit-button" @click="Exit()">
-          退出<Bicycle />
-        </el-button>
+        <el-button type="danger" class="exit-button" @click="Exit()">退出</el-button>
       </el-header>
 
       <el-container>
