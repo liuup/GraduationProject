@@ -178,6 +178,14 @@ def notices():
 
 
 '''
+================================================================
+#
+# 公告[添加，编辑，删除]接口
+#
+================================================================
+'''
+
+'''
 公告添加接口
 '''
 class Notice(BaseModel):
@@ -185,6 +193,55 @@ class Notice(BaseModel):
     message: str
     msg_date: str
 
-@app.post("/notices")
+@app.post("/notices/add")
 def noticesAdd(notice: Notice):
-    pass
+    print(notice)
+
+    cnx = mysql.connector.connect(**localdb)
+    # 查询游针
+    cursor = cnx.cursor()
+
+    # 获取post请求体的字典类型数据
+    notice_dict = json.loads(notice.json())
+
+    # print(notice_dict)
+
+    sql = "insert into notices(title, message, msg_date) values ('{}', '{}', '{}')"\
+        .format(notice_dict["title"], notice_dict["message"], notice_dict["msg_date"])
+    
+    cursor.execute(sql)
+    cnx.commit()
+
+    cursor.close()
+    cnx.close()
+
+    if cursor.rowcount == 0:
+        return failure_json
+    else:
+        return success_json
+
+
+'''
+公告编辑接口
+'''
+# class Notice(BaseModel):
+#     title: str
+#     message: str
+#     msg_date: str
+
+@app.post("/notices/edit")
+def noticeEdit():
+    return failure_json
+
+
+'''
+公告删除接口
+'''
+# class Notice(BaseModel):
+#     title: str
+#     message: str
+#     msg_date: str
+
+@app.post("/notices/delete")
+def noticeDelete():
+    return failure_json
