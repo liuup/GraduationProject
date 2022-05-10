@@ -73,7 +73,7 @@ def login(user: User):
 
     cursor.execute(query_sql)
 
-     # 全部数据
+    # 全部数据
     data = cursor.fetchall()
 
     print(data)
@@ -127,3 +127,64 @@ def register(reguser: RegUser):
     #     return success_json
     
     return failure_json
+
+
+'''
+公告返回接口
+'''
+@app.get("/notices")
+def notices():
+    cnx = mysql.connector.connect(**localdb)
+    # 查询游针
+    cursor = cnx.cursor()
+
+    query_sql = "select * from notices"
+
+    cursor.execute(query_sql)
+    
+    # 全部数据
+    data = cursor.fetchall()
+    # 数据描述
+    desc = cursor.description
+
+    # print(data)
+    # print(desc)
+
+    # 存储全部数据的列表
+    res_list = []
+    
+    for i in range(0, len(data)):
+        # 存储单个数据的字典
+        res_dist = {}
+        for j in range(0, len(data[0])):
+            # 将时间序列化
+            if desc[j][0] == "msg_date":
+                res_dist[desc[j][0]] = str(data[i][j])
+                continue
+            # pass
+            res_dist[desc[j][0]] = data[i][j]
+        res_list.append(res_dist)
+
+    # print(res_list)
+
+    # 关闭连接
+    cursor.close()
+    cnx.close()
+
+    if len(res_list) == 0:
+        return failure_json
+    else:
+        return json.dumps(res_list)
+
+
+'''
+公告添加接口
+'''
+class Notice(BaseModel):
+    title: str
+    message: str
+    msg_date: str
+
+@app.post("/notices")
+def noticesAdd(notice: Notice):
+    pass
