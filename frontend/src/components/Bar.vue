@@ -37,7 +37,7 @@ export default {
 <style scoped>
 .bar_container {
 
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
 }
 </style>

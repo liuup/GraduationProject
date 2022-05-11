@@ -50,6 +50,13 @@ export default {
           count: "64",
           platform: "CG"
         },
+        {
+          date: "2022-04-17",
+          name: "软件工程基础",
+          class: "计科2001 计科2002",
+          count: "66",
+          platform: "雨课堂"
+        },
       ],
     };
   },

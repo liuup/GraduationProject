@@ -21,7 +21,7 @@
 
           <div class="card-text">
             {{ item.message }}
-          </div>
+          </div><br>
           <div class="card-time">{{ item.msg_date }}</div>
         </el-card>
       </el-col>
@@ -239,5 +239,9 @@ export default {
   word-wrap: break-word;
   word-break: break-all;
   overflow: hidden; /*这个参数根据需要来绝对要不要*/
+}
+
+.card-time {
+	font-size: 12px;
 }
 </style>
