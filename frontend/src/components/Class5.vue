@@ -84,13 +84,11 @@
 
 <script>
 import Bar from "./Bar.vue";
-import Round from "./Round.vue";
 
 export default {
     components: {
         // Echarts组件
         Bar,
-        Round,
     },
 
     data() {
@@ -477,13 +475,6 @@ export default {
 </script>
 
 <style scoped>
-/* .danger-card-header {
-    background-color: #F56C6C;
-} */
-/* .box-card { #f89898
-    background-color: #F56C6C;
-} */
-
 .danger-box-card {
   background-color: #f3d19e;
 }

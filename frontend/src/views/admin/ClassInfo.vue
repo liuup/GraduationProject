@@ -1,6 +1,6 @@
 <template>
     <div class="classinfo-main">
-        <h1>Class Info index:{{ classindex }}</h1>
+        <!-- <h1>Class Info index:{{ classindex }}</h1> -->
         <Class1 v-if="classindex == 0"/>
         <Class2 v-if="classindex == 1"/>
         <Class3 v-if="classindex == 2"/>
