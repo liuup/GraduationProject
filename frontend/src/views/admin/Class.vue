@@ -23,7 +23,7 @@ export default {
     return {
       tableData: [
         {
-          date: "2018-05-03",
+          date: "2019-05-03",
           name: "软件工程基础",
           class: "计科1801 计科1802",
           count: "57",
