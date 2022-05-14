@@ -58,12 +58,21 @@
       纵向数据统计的为全班学生的学习情况，可以观察出整个课堂的宏观数据，比如签到统计，答题正确率，答题错误选项分布等。
     </div>
 
-
-
-
-
-
-    
+    <br />
+    <!-- <div>第一次作业统计</div> -->
+    <br />
+    <el-row>
+        <el-col :span="12">
+            <Bar :option="line_data_1" /><hr>
+            <Bar :option="line_data_3" /><hr>
+            <Bar :option="line_data_5" /><hr>
+        </el-col>
+        <el-col :span="12">
+            <Bar :option="line_data_2" /><hr>
+            <Bar :option="line_data_4" /><hr>
+            <Bar :option="line_data_6" /><hr>
+        </el-col>
+    </el-row><br><br>
 </template>
 
 <script>
@@ -153,6 +162,286 @@ export default {
                     }
                 ]
             },
+
+            line_data_1: {
+                title: {
+                    text: '软件及软件危机 选项分布'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                    type: 'shadow'
+                    }
+                },
+                grid: {
+                    top: 80,
+                    bottom: 30
+                },
+                xAxis: {
+                    type: 'value',
+                    position: 'bottom',
+                    splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                    }
+                },//A 0, B 4, C 48, D 3, NULL 11
+                yAxis: {
+                    type: 'category',
+                    axisLine: { show: false },
+                    axisLabel: { show: false },
+                    axisTick: { show: false },
+                    splitLine: { show: false },
+                    data: [
+                    '未选',
+                    'D',
+                    'C',
+                    'B',
+                    'A',
+                    ]
+                },
+                series: [
+                    {
+                    name: 'Cost',
+                    type: 'bar',
+                    stack: 'Total',
+                    label: {
+                        show: true,
+                        formatter: '{b}'
+                    },
+                    data: [11, 3, 48, 4, 0]
+                    }
+                ]
+            },
+
+            line_data_2: {
+                title: {
+                text: "软件及软件危机 得分情况",
+                },
+                tooltip: {
+                trigger: "axis",
+                axisPointer: {
+                    type: "shadow",
+                },
+                },
+                grid: {
+                left: "3%",
+                right: "4%",
+                bottom: "3%",
+                containLabel: true,
+                },
+                xAxis: [
+                {
+                    name: "得分",
+                    type: "category",
+                    data: ["2分", "0分"],
+                    axisTick: {
+                    alignWithLabel: true,
+                    },
+                },
+                ],
+                yAxis: [
+                {
+                    name: "学生个数",
+                    type: "value",
+                },
+                ],
+                series: [
+                {
+                    name: "学生个数",
+                    type: "bar",
+                    barWidth: "60%",
+                    data: [42, 17],
+                },
+                ],
+            },
+
+            line_data_3: {
+                title: {
+                    text: '软件及软件工程作业 选项分布'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                    type: 'shadow'
+                    }
+                },
+                grid: {
+                    top: 80,
+                    bottom: 30
+                },
+                xAxis: {
+                    type: 'value',
+                    position: 'bottom',
+                    splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                    }
+                },//A 0, B 4, C 48, D 3, NULL 11
+                yAxis: {
+                    type: 'category',
+                    axisLine: { show: false },
+                    axisLabel: { show: false },
+                    axisTick: { show: false },
+                    splitLine: { show: false },
+                    data: [
+                    '未选',
+                    'D',
+                    'C',
+                    'B',
+                    'A',
+                    ]
+                },
+                series: [
+                    {
+                    name: 'Cost',
+                    type: 'bar',
+                    stack: 'Total',
+                    label: {
+                        show: true,
+                        formatter: '{b}'
+                    },
+                    data: [2, 3, 6, 34, 3]
+                    }
+                ]
+            },
+
+            line_data_4: {
+                title: {
+                text: "软件及软件工程作业 得分情况",
+                },
+                tooltip: {
+                trigger: "axis",
+                axisPointer: {
+                    type: "shadow",
+                },
+                },
+                grid: {
+                left: "3%",
+                right: "4%",
+                bottom: "3%",
+                containLabel: true,
+                },
+                xAxis: [
+                {
+                    name: "得分",
+                    type: "category",
+                    data: ["16分", "14分", "12分", "10分"],
+                    axisTick: {
+                    alignWithLabel: true,
+                    },
+                },
+                ],
+                yAxis: [
+                {
+                    name: "学生个数",
+                    type: "value",
+                },
+                ],
+                series: [
+                {
+                    name: "学生个数",
+                    type: "bar",
+                    barWidth: "60%",
+                    data: [23, 19, 11, 4],
+                },
+                ],
+            },
+
+            line_data_5: {
+                title: {
+                    text: '软件过程 选项分布'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                    type: 'shadow'
+                    }
+                },
+                grid: {
+                    top: 80,
+                    bottom: 30
+                },
+                xAxis: {
+                    type: 'value',
+                    position: 'bottom',
+                    splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                    }
+                },//A 0, B 4, C 48, D 3, NULL 11
+                yAxis: {
+                    type: 'category',
+                    axisLine: { show: false },
+                    axisLabel: { show: false },
+                    axisTick: { show: false },
+                    splitLine: { show: false },
+                    data: [
+                    '未选',
+                    'D',
+                    'C',
+                    'B',
+                    'A',
+                    ]
+                },
+                series: [
+                    {
+                    name: 'Cost',
+                    type: 'bar',
+                    stack: 'Total',
+                    label: {
+                        show: true,
+                        formatter: '{b}'
+                    },
+                    data: [4, 45, 2, 3, 3]
+                    }
+                ]
+            },
+
+            line_data_6: {
+                title: {
+                text: "软件过程 得分情况",
+                },
+                tooltip: {
+                trigger: "axis",
+                axisPointer: {
+                    type: "shadow",
+                },
+                },
+                grid: {
+                left: "3%",
+                right: "4%",
+                bottom: "3%",
+                containLabel: true,
+                },
+                xAxis: [
+                {
+                    name: "得分",
+                    type: "category",
+                    data: ["16分", "14分", "12分", "10分", "8"],
+                    axisTick: {
+                    alignWithLabel: true,
+                    },
+                },
+                ],
+                yAxis: [
+                {
+                    name: "学生个数",
+                    type: "value",
+                },
+                ],
+                series: [
+                {
+                    name: "学生个数",
+                    type: "bar",
+                    barWidth: "60%",
+                    data: [32, 10, 11, 4, 1],
+                },
+                ],
+            },
+
         }
     }
 }
