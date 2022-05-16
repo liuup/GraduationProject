@@ -1,6 +1,6 @@
 <template>
     <div class="backimage"></div>
-    
+
     <div class="meituan-content">
         <div class="title">高校学情分析可视化平台</div>
 
@@ -38,7 +38,7 @@
                             ></el-input>
                         </div>
 
-                        <el-button class="btn" @click="login()" type="primary">登录</el-button>
+                        <el-button class="login-btn" @click="login()" type="primary">登录</el-button>
                         <!-- <el-button class="btn" @click="cancel()">清空</el-button> -->
                     </div>
                     
@@ -94,7 +94,7 @@ export default {
             admin_btn_type: "default",
 
             // 登录窗口占位字符，初始显示文字
-            account_placeholder: "学生 测试账号stu",
+            account_placeholder: "学生 测试账号183424080320",
             pwd_placeholder: "学生 测试密码654321",
 
             // 注册表单
@@ -379,11 +379,12 @@ export default {
     cursor: pointer;
     display: contents;
 }
-.btn {
+
+.login-btn {
     width: 200px;
-    margin-top: 20px;
+    margin-top: 45px;
     /* margin: 10px auto 0 auto; */
-    margin-left: 33px;
+    margin-left: 130px;
     align-items: center;
     /* display: flex; */
 }
