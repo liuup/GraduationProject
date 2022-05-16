@@ -128,7 +128,7 @@ export default {
             this.login_text = "学生";
 
             // 学生登录时占位字符的显示
-            this.account_placeholder = "学生 测试账号stu";
+            this.account_placeholder = "学生 测试账号183424080320";
             this.pwd_placeholder = "学生 测试密码654321";
 
             // 查询数据表更改

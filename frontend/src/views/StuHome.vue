@@ -18,7 +18,7 @@
                 <el-menu-item index="1" @click="Overview()">
                   <div class="menu-item">
                     <el-icon><View /></el-icon>
-                    <span>已修课程</span>
+                    <span>总览</span>
                   </div>
                 </el-menu-item>
 
@@ -28,34 +28,6 @@
                     <span>个人中心</span>
                   </div>
                 </el-menu-item>
-
-                <!-- <el-menu-item index="3" @click="Student()">
-                  <div class="menu-item">
-                    <el-icon><User /></el-icon>
-                    <span>学生管理</span>
-                  </div>
-                </el-menu-item>
-
-                <el-menu-item index="4" @click="Me()">
-                  <div class="menu-item">
-                    <el-icon><More /></el-icon>
-                    <span>个人中心</span>
-                  </div>
-                </el-menu-item> -->
-
-                <!-- <el-menu-item index="5" @click="Student()">
-                  <div class="menu-item">
-                    <el-icon><User /></el-icon>
-                    <span>学生管理</span>
-                  </div>
-                </el-menu-item>
-
-                <el-menu-item index="6" @click="Me()">
-                  <div class="menu-item">
-                    <el-icon><More /></el-icon>
-                    <span>个人中心</span>
-                  </div>
-                </el-menu-item> -->
 
               </el-menu>
             </el-col>

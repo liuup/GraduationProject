@@ -9,10 +9,10 @@
         <Bar :option="bar_data"></Bar>
       </el-col>
       <el-col :span="12">
-        <Round :option="round_data"></Round>
+        <Bar :option="bar_data_2"></Bar>
       </el-col>
     </el-row>
-	  <!-- <el-row>
+    <!-- <el-row>
       <el-col :span="12">
         <Bar :option="bar_data"></Bar>
       </el-col>
@@ -25,13 +25,13 @@
 
 <script>
 import Bar from "../../components/Bar.vue";
-import Round from "../../components/Round.vue";
+// import Round from "../../components/Round.vue";
 
 export default {
   components: {
     // Echarts组件
     Bar,
-    Round,
+    // Round,
   },
 
   data() {
@@ -45,6 +45,10 @@ export default {
           trigger: "axis",
           axisPointer: {
             type: "shadow",
+          },
+          formatter: function (params) {
+            var tar = params[1];
+            return tar.name + "<br/>" + tar.seriesName + " : " + tar.value;
           },
         },
         grid: {
@@ -63,7 +67,7 @@ export default {
         },
         series: [
           {
-            name: "Placeholder",
+            // name: "Placeholder",
             type: "bar",
             stack: "Total",
             itemStyle: {
@@ -79,7 +83,7 @@ export default {
             data: [0, 1579 + 585, 532, 0],
           },
           {
-            name: "Life Cost",
+            name: "数据",
             type: "bar",
             stack: "Total",
             label: {
@@ -91,37 +95,23 @@ export default {
         ],
       },
 
-      round_data: {
-        title: {
-          text: "平台数据来源",
-        //   subtext: "Fake Data",
-          left: "center",
+      bar_data_2: {
+        xAxis: {
+          name: "数据",
+          type: "category",
+          data: ["老师", "学生", "管理员", "课程"],
         },
-        tooltip: {
-          trigger: "item",
-        },
-        legend: {
-          orient: "vertical",
-          left: "left",
+        yAxis: {
+          name: "数量",
+          type: "value",
         },
         series: [
           {
-            name: "Access From",
-            type: "pie",
-            radius: "50%",
-            data: [
-              { value: 6938, name: "CG" },
-              { value: 1047 + 585, name: "雨课堂" },
-              { value: 532, name: "超星" },
-            //   { value: 484, name: "Union Ads" },
-            //   { value: 300, name: "Video Ads" },
-            ],
-            emphasis: {
-              itemStyle: {
-                shadowBlur: 10,
-                shadowOffsetX: 0,
-                shadowColor: "rgba(0, 0, 0, 0.5)",
-              },
+            data: [1, 1, 1, 5],
+            type: "bar",
+            showBackground: true,
+            backgroundStyle: {
+              color: "rgba(180, 180, 180, 0.2)",
             },
           },
         ],

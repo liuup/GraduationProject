@@ -2,23 +2,6 @@
   <div class="student-main">
     <h1>学生管理</h1>
 
-    <!-- <el-row>
-      <el-col :span="12">
-        <Bar :option="bar_data"></Bar>
-      </el-col>
-      <el-col :span="12">
-        <Bar :option="bar_data"></Bar>
-      </el-col>
-    </el-row>
-
-    <el-row>
-      <el-col :span="12">
-        <Round :option="round_data"></Round>
-      </el-col>
-      <el-col :span="12">
-        <Round :option="round_data"></Round>
-      </el-col>
-    </el-row> -->
     <el-table :data="students" style="width: 100%">
       <el-table-column prop="name" label="姓名" width="120" />
       <el-table-column prop="num" label="学号" />
