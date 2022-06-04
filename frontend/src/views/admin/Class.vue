@@ -17,11 +17,23 @@
       </el-table-column>
     </el-table>
 
-    <el-upload
+
+    <el-button type="primary" style="width: 100%" @click="addClass()">添加课程</el-button>
+
+    <el-dialog v-model="dialogFormVisible" title="个人信息">
+      <el-upload
       class="upload-demo"
     >
-      <el-button type="primary" style="width: 100%" @click="addClass()">添加课程</el-button>
+      <el-button type="primary" style="width: 100%" @click="addClass()">选择文件</el-button>
     </el-upload>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取消</el-button>
+          <el-button type="primary" @click="submit()">确定</el-button>
+        </span>
+      </template>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -29,6 +41,9 @@
 export default {
   data() {
     return {
+      dialogFormVisible: false,
+
+
       tableData: [
         {
           date: "2019-05-03",
@@ -77,14 +92,15 @@ export default {
     },
 
     addClass() {
-      this.tableData.push({
-          date: "2022-04-17",
-          name: "软件工程基础",
-          class: "计科2001 计科2002",
-          count: "66",
-          platform: "雨课堂",
-        });
+      // this.tableData.push({
+      //     date: "2022-04-17",
+      //     name: "软件工程基础",
+      //     class: "计科2001 计科2002",
+      //     count: "66",
+      //     platform: "雨课堂",
+      //   });
 
+      this.dialogFormVisible = true;
         //       {
         //   date: "2022-04-17",
         //   name: "软件工程基础",
@@ -92,6 +108,18 @@ export default {
         //   count: "66",
         //   platform: "雨课堂",
         // },
+    },
+
+    submit() {
+      this.dialogFormVisible = false;
+
+      this.tableData.push({
+          date: "2022-04-17",
+          name: "软件工程基础",
+          class: "计科2001 计科2002",
+          count: "66",
+          platform: "雨课堂",
+        });
     },
   },
 };

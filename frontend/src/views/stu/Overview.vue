@@ -16,20 +16,105 @@
           <br />
           <div class="card-time">{{ item.msg_date }}</div>
         </el-card>
+      </el-col> </el-row
+    ><br />
+    <hr />
+    <el-row :gutter="10">
+      <el-col :span="12">
+        <Bar :option="line_data" />
       </el-col>
-    </el-row><br><hr>
+      <el-col :span="4">
+        <el-card class="safe-box-card" shadow="hover">
+          <template #header>
+            <div class="card-header">
+              <span>当前课程预警</span>
+            </div>
+          </template>
 
+          <div>暂无</div>
+          <br />
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Bar from "../../components/Bar.vue";
 
 export default {
+  components: {
+    // Echarts组件
+    // Class1,
+    Bar,
+  },
+
   data() {
     return {
       // 公告列表，从后端请求
       card_list: [],
+
+      line_data: {
+        title: {
+          text: "签到统计",
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            label: {
+              backgroundColor: "#6a7985",
+            },
+          },
+        },
+        toolbox: {
+          // feature: {
+          //   saveAsImage: {},
+          // },
+        },
+        grid: {
+          left: "3%",
+          right: "4%",
+          bottom: "3%",
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: "category",
+            boundaryGap: false,
+            data: [
+              "3-15 8:20",
+              "3-17 8:20",
+              "3-22 10:20",
+              "3-25 8:20",
+
+              "3-30 8:20",
+              "4-02 8:20",
+              "4-06 10:20",
+              "4-10 8:20",
+              "4-15 8:20",
+            ],
+          },
+        ],
+        yAxis: [
+          {
+            type: "value",
+          },
+        ],
+        series: [
+          {
+            name: "迟到时间",
+            type: "line",
+            stack: "Total",
+            areaStyle: {},
+            emphasis: {
+              focus: "series",
+            },
+            data: [-13, 7, 9, 2, -5, 9, 13, 6, -3],
+          },
+        ],
+      },
     };
   },
 
